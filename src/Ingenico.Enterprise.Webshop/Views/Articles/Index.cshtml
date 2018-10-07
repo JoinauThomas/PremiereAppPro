@@ -1,0 +1,71 @@
+﻿@model IEnumerable<ArticleViewModel>
+
+@{
+    ViewBag.Title = "PageArticles";
+}
+<h2>buy your laptops here</h2>
+
+<div class="mt-5 mb-5">
+
+
+    @foreach (var item in Model)
+    {        
+        <div class="card text-center blockquote" style="margin-bottom:8px; background-color:rgb(240, 240, 240)">
+            <div class="card-header">
+                <h3>@Html.DisplayFor(modelItem => item.Mark)</h3>
+            </div>
+            <div class="card-body text-center">
+                <div class="row align-items-center">
+                    <div class="col-lg-3">
+                        <img src='@Url.Content("~/images/Articles/" + item.Picture + ".jpg")' style="max-width:80%;max-height:80%">
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row" style="text-align:center">
+                            <div class="col-lg-12">
+                                <h5>@Html.DisplayFor(modelItem => item.Name)</h5>
+                                <hr />
+                            </div>
+
+                        </div>
+                        <div class="row" style="text-align:left">
+                            <span style="font-size:small">
+                                @Html.DisplayFor(modelItem => item.Comment)
+                            </span>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <h4>@String.Format("{0:0.00}", (decimal)item.Price)€</h4>
+                        <br />
+                        <h6>ref : @Html.DisplayFor(modelItem => item.Id)</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+
+    @*<button id="btn" class="btn btn-success">Buy</button>*@
+</div>
+
+
+
+<script>
+    @*$('#btn').click(function () {
+        $.ajax({
+            type: 'GET',
+            datatype: 'json',
+            url: '@Url.Action("GetCountArticles", "Article")',
+            success:
+                function (response) {
+                    alert("nombre d'article(s) : " + response);
+                },
+            error:
+                function (response) {
+                    alert("un problème a été détecté... " + response.nom);
+                }
+        });
+    });*@
+
+
+</script>
